@@ -12,6 +12,7 @@ public struct MarkdownView: View {
         
     }
     public var body: some View {
+        TextField("Markdown", text: $text)
         
         if text.prefix(4) == "### "{
             TextField("Markdown", text: $text)
