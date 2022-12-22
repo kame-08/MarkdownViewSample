@@ -1,7 +1,7 @@
 import XCTest
 @testable import MarkdownViewSample
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 final class MarkdownViewSampleTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
