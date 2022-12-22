@@ -12,13 +12,6 @@ public struct MarkdownView: View {
         
     }
     public var body: some View {
-        List {
-            // 一行目
-            Text("item1")
-            // 二行目
-            Text("item2")
-            // 三行目
-            Text("item3")
-        }
+        TextField("Markdown", text: $text)
     }
 }
