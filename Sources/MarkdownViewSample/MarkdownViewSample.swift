@@ -7,6 +7,7 @@ public struct MarkdownViewSample {
 
 @available(iOS 13.0, *)
 public struct MarkdownView: View {
+    @State var text = ""
     public init() {
         
     }
@@ -21,6 +22,3 @@ public struct MarkdownView: View {
         }
     }
 }
-
-
-
