@@ -11,9 +11,8 @@ public struct MarkdownView: View {
     public init() {
         
     }
+    
     public var body: some View {
-        TextField("Markdown", text: $text)
-        
         if text.prefix(4) == "### "{
             TextField("Markdown", text: $text)
                 .font(.title3)
@@ -31,6 +30,8 @@ public struct MarkdownView: View {
             TextField("Markdown", text: $text)
                 .foregroundColor(Color.blue)
             
+        } else {
+            TextField("Markdown", text: $text)
         }
     }
 }
