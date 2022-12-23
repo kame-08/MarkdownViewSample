@@ -68,9 +68,11 @@ struct Markdown: View {
             TextField("Markdown", text: $textArr[num] ,axis: .vertical)
                 .font(markdownCheck(text))
         }
-            
             .task {
                 textArr = text.components(separatedBy: "\n")
+            }
+            .onChange(of: text) { newValue in
+                textArr = newValue.components(separatedBy: "\n")
             }
     }
 }
