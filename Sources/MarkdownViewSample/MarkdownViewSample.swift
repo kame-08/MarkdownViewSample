@@ -62,9 +62,16 @@ public enum MarkdownViewStyle {
 @available(iOS 16.0, *)
 struct Markdown: View {
     @Binding var text:String
+    @State var textArr:[String] = [""]
     var body: some View {
-        TextField("Markdown", text: $text ,axis: .vertical)
-            .font(markdownCheck(text))
+        ForEach(1 ..< textArr.count) { num in
+            TextField("Markdown", text: $textArr[num] ,axis: .vertical)
+                .font(markdownCheck(text))
+        }
+            
+            .task {
+                textArr = text.components(separatedBy: "\n")
+            }
     }
 }
 
