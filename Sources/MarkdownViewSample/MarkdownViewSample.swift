@@ -8,12 +8,17 @@ public struct MarkdownViewSample {
 
 @available(iOS 16.0, *)
 public struct MarkdownView: View {
-    @State var text: String
+    @Binding var text: String
     @State public var markdownViewStyle: MarkdownViewStyle
-    @FocusState private var condition:Bool
-    public init(text: String ,markdownViewStyle: MarkdownViewStyle) {
-        self.text =  text
+//    @FocusState private var condition:Bool
+//    public init(text: String ,markdownViewStyle: MarkdownViewStyle) {
+//        self.text =  text
+//        self.markdownViewStyle = markdownViewStyle
+//    }
+    public init(text: Binding<String>, markdownViewStyle: MarkdownViewStyle) {
+        self._text = text
         self.markdownViewStyle = markdownViewStyle
+//        self.condition = condition
     }
     public var body: some View {
         
