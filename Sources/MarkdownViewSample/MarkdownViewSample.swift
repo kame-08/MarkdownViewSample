@@ -66,7 +66,7 @@ struct Markdown: View {
             VStack(alignment: .leading) {
                 ForEach(0 ..< textArr.count, id: \.self) { num in
                     if markdownCheck(textArr[num]) == .largeTitle {
-                        VStack{
+                        VStack(alignment: .leading, spacing: 0){
                             Text(getAttributedString(textArr[num]))
                                 .font(.largeTitle)
                             Divider()
