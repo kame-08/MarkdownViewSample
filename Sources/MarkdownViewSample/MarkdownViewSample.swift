@@ -76,6 +76,7 @@ struct Markdown: View {
                         Text(getAttributedString(textArr[num]))
                             .font(.body)
                             .foregroundColor(Color(.link))
+                            .underline()
                         
                     }else if textArr[num].prefix(2) == "> "  {
                         HStack {
