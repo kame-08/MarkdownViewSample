@@ -3,22 +3,21 @@ import SwiftUI
 @available(iOS 16.0, *)
 public struct MarkdownViewSample {
     public private(set) var text = "Hello, World!"
-    public var type: MarkdownViewStyle
-    
+    public private(set) var markdownViewStyle: MarkdownViewStyle
 }
 
 @available(iOS 16.0, *)
 public struct MarkdownView: View {
-    @State var text = ""
-    @State var type: MarkdownViewStyle = .markdoun
+    @State var  text = ""
+    @State public var markdownViewStyle: MarkdownViewStyle = .markdoun
     @FocusState private var condition:Bool
     public init() {
-        //        condition = true
+        // condition = true
     }
     
     public var body: some View {
         
-        switch type {
+        switch markdownViewStyle {
         case .vertical:
             VStack {
                 Markdown(text: $text)
