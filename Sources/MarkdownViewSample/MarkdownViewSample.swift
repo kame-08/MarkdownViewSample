@@ -3,6 +3,8 @@ import SwiftUI
 @available(iOS 16.0, *)
 public struct MarkdownViewSample {
     public private(set) var text = "Hello, World!"
+    public var type: MarkdownViewStyle
+    
 }
 
 @available(iOS 16.0, *)
@@ -50,7 +52,7 @@ func markdownCheck(_ text: String) -> Font {
     }
 }
 
-enum MarkdownViewStyle {
+public enum MarkdownViewStyle {
     case vertical
     case horizontal
     case textEdit
