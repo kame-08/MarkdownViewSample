@@ -64,7 +64,7 @@ struct Markdown: View {
     @Binding var text:String
     @State var textArr:[String] = [""]
     var body: some View {
-        ForEach(1 ..< textArr.count) { num in
+        ForEach(0 ..< textArr.count) { num in
             TextField("Markdown", text: $textArr[num] ,axis: .vertical)
                 .font(markdownCheck(text))
         }
