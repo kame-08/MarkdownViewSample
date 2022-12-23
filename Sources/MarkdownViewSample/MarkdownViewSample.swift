@@ -62,49 +62,51 @@ struct Markdown: View {
     @Binding var text:String
     @State var textArr:[String] = [""]
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                ForEach(0 ..< textArr.count, id: \.self) { num in
-                    if markdownCheck(textArr[num]) == .largeTitle {
-                        VStack(alignment: .leading, spacing: 0){
+        ScrollView {
+            HStack {
+                VStack(alignment: .leading) {
+                    ForEach(0 ..< textArr.count, id: \.self) { num in
+                        if markdownCheck(textArr[num]) == .largeTitle {
+                            VStack(alignment: .leading, spacing: 0){
+                                Text(getAttributedString(textArr[num]))
+                                    .font(.largeTitle)
+                                Divider()
+                            }
+                        } else if markdownCheck(textArr[num]) == .footnote {
+                            // URLの時
                             Text(getAttributedString(textArr[num]))
-                                .font(.largeTitle)
+                                .font(.body)
+                                .foregroundColor(Color(.link))
+                                .underline()
+                            
+                        }else if textArr[num].prefix(2) == "> "  {
+                            HStack {
+                                Image(systemName: "poweron")
+                                Text(getAttributedString(textArr[num]))
+                            }
+                        }else if textArr[num].prefix(2) == "- " ||  textArr[num].prefix(2) == "* " || textArr[num].prefix(2) == "+ "{
+                            HStack {
+                                Image(systemName: "circlebadge.fill")
+                                    .font(.caption2)
+                                Text(getAttributedString(textArr[num]))
+                            }
+                        }else if textArr[num].prefix(2) == "— " || textArr[num].prefix(3) == "-- " || textArr[num].prefix(3) == "__ "{
                             Divider()
-                        }
-                    } else if markdownCheck(textArr[num]) == .footnote {
-                        // URLの時
-                        Text(getAttributedString(textArr[num]))
-                            .font(.body)
-                            .foregroundColor(Color(.link))
-                            .underline()
-                        
-                    }else if textArr[num].prefix(2) == "> "  {
-                        HStack {
-                            Image(systemName: "poweron")
+                        } else {
                             Text(getAttributedString(textArr[num]))
+                                .font(markdownCheck(textArr[num]))
                         }
-                    }else if textArr[num].prefix(2) == "- " ||  textArr[num].prefix(2) == "* " || textArr[num].prefix(2) == "+ "{
-                        HStack {
-                            Image(systemName: "circlebadge.fill")
-                                .font(.caption2)
-                            Text(getAttributedString(textArr[num]))
-                        }
-                    }else if textArr[num].prefix(2) == "— " || textArr[num].prefix(3) == "-- " || textArr[num].prefix(3) == "__ "{
-                        Divider()
-                    } else {
-                        Text(getAttributedString(textArr[num]))
-                            .font(markdownCheck(textArr[num]))
+                    }
+                    .task {
+                        textArr = text.components(separatedBy: "\n")
+                    }
+                    .onChange(of: text) { newValue in
+                        textArr = newValue.components(separatedBy: "\n")
+                        print(textArr)
                     }
                 }
-                .task {
-                    textArr = text.components(separatedBy: "\n")
-                }
-                .onChange(of: text) { newValue in
-                    textArr = newValue.components(separatedBy: "\n")
-                    print(textArr)
-                }
+                Spacer()
             }
-            Spacer()
         }
     }
 }
