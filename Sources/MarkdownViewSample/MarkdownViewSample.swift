@@ -9,7 +9,7 @@ public struct MarkdownViewSample {
 @available(iOS 16.0, *)
 public struct MarkdownView: View {
     @State var text: String
-    @State public var markdownViewStyle: MarkdownViewStyle = .markdoun
+    @State public var markdownViewStyle: MarkdownViewStyle
     @FocusState private var condition:Bool
     public init(text: String ,markdownViewStyle: MarkdownViewStyle) {
         self.text =  text
