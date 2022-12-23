@@ -14,26 +14,23 @@ public struct MarkdownView: View {
     }
     
     public var body: some View {
-        if text.prefix(4) == "### "{
-            TextField("Markdown", text: $text ,axis: .vertical)
-                .font(.title3)
-                .focused($condition)
-        } else if text.prefix(3) == "## "{
-            TextField("Markdown", text: $text ,axis: .vertical)
-                .font(.title2)
-                .focused($condition)
-        } else if text.prefix(2) == "# "{
-            TextField("Markdown", text: $text ,axis: .vertical)
-                .font(.title)
-                .focused($condition)
+        
+        TextField("Markdown", text: $text ,axis: .vertical)
+            .font(markdownCheck(text))
+        
+    }
+    
+    func markdownCheck(_ text: String) -> Font {
+        if text.prefix(4) == "### " {
+            return Font.title3
+        } else if text.prefix(3) == "## " {
+            return Font.title2
+        } else if text.prefix(2) == "# " {
+            return Font.title
         } else if text.prefix(8) == "https://" {
-            TextField("Markdown", text: $text ,axis: .vertical)
-                .foregroundColor(Color(.link))
-                .underline()
-                .focused($condition)
+            return Font.body
         } else {
-            TextField("Markdown", text: $text ,axis: .vertical)
-                .focused($condition)
+            return Font.body
         }
     }
 }
