@@ -8,11 +8,12 @@ public struct MarkdownViewSample {
 
 @available(iOS 16.0, *)
 public struct MarkdownView: View {
-    @State var  text: String
+    @State var text: String
     @State public var markdownViewStyle: MarkdownViewStyle = .markdoun
     @FocusState private var condition:Bool
-    public init(text: String) {
+    public init(text: String ,markdownViewStyle: MarkdownViewStyle) {
         self.text =  text
+        self.markdownViewStyle = markdownViewStyle
     }
     
     public var body: some View {
@@ -62,7 +63,6 @@ public enum MarkdownViewStyle {
 struct Markdown: View {
     @Binding var text:String
     var body: some View {
-        
         TextField("Markdown", text: $text ,axis: .vertical)
             .font(markdownCheck(text))
     }
