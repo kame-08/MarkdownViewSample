@@ -66,9 +66,11 @@ struct Markdown: View {
             VStack(alignment: .leading) {
                 ForEach(0 ..< textArr.count, id: \.self) { num in
                     if markdownCheck(textArr[num]) == .largeTitle {
-                        Text(getAttributedString(textArr[num]))
-                            .font(.largeTitle)
-                        Divider()
+                        VStack{
+                            Text(getAttributedString(textArr[num]))
+                                .font(.largeTitle)
+                            Divider()
+                        }
                     } else if markdownCheck(textArr[num]) == .footnote {
                         // URLの時
                         Text(getAttributedString(textArr[num]))
