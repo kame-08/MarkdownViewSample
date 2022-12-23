@@ -7,6 +7,6 @@ final class MarkdownViewSampleTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(MarkdownViewSample(type: .vertical).text, "Hello, World!")
+        XCTAssertEqual(MarkdownViewSample(markdownViewStyle: .vertical).text, "Hello, World!")
     }
 }
