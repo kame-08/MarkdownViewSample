@@ -10,15 +10,9 @@ public struct MarkdownViewSample {
 public struct MarkdownView: View {
     @Binding var text: String
     @State public var markdownViewStyle: MarkdownViewStyle
-//    @FocusState private var condition:Bool
-//    public init(text: String ,markdownViewStyle: MarkdownViewStyle) {
-//        self.text =  text
-//        self.markdownViewStyle = markdownViewStyle
-//    }
     public init(text: Binding<String>, markdownViewStyle: MarkdownViewStyle) {
         self._text = text
         self.markdownViewStyle = markdownViewStyle
-//        self.condition = condition
     }
     public var body: some View {
         
@@ -44,11 +38,11 @@ public struct MarkdownView: View {
 @available(iOS 14.0, *)
 func markdownCheck(_ text: String) -> Font {
     if text.prefix(4) == "### " {
-        return Font.title3
-    } else if text.prefix(3) == "## " {
         return Font.title2
-    } else if text.prefix(2) == "# " {
+    } else if text.prefix(3) == "## " {
         return Font.title
+    } else if text.prefix(2) == "# " {
+        return Font.largeTitle
     } else if text.prefix(8) == "https://" {
         return Font.body
     } else {
@@ -71,7 +65,11 @@ struct Markdown: View {
         HStack {
             VStack(alignment: .leading) {
                 ForEach(0 ..< textArr.count, id: \.self) { num in
-                    if markdownCheck(textArr[num]) == .footnote {
+                    if markdownCheck(textArr[num]) == .largeTitle {
+                        Text(getAttributedString(textArr[num]))
+                            .font(.largeTitle)
+                        Divider()
+                    } else if markdownCheck(textArr[num]) == .footnote {
                         // URLの時
                         Text(getAttributedString(textArr[num]))
                             .font(.body)
