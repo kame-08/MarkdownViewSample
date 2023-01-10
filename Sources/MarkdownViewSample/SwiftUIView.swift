@@ -12,7 +12,7 @@ public struct Markdown: View {
     @Binding var text: String
     @State var arrText: [String] = []
     
-    init(_ text: Binding<String>) {
+    public init(_ text: Binding<String>) {
         // _text = State(initialValue: text)
         self._text = text
     }
