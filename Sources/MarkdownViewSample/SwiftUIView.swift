@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct Markdown: View {
+public struct Markdown: View {
     @Binding var text: String
     @State var arrText: [String] = []
     
@@ -17,7 +17,7 @@ struct Markdown: View {
         self._text = text
     }
     
-    var body: some View {
+    public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0.0) {
                 ForEach(arrText, id: \.self, content: { atext in
