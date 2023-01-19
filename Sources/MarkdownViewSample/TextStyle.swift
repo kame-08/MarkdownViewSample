@@ -30,7 +30,7 @@ func TextStyle(text: String) -> Font {
     } else if text.prefix(1) == ">" {
         // 引用
         return .reference
-    } else if text == "```" {
+    } else if text.prefix(3) == "```" {
         // コードブロック
         return .code
         
