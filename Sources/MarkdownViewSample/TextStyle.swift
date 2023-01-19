@@ -20,7 +20,7 @@ func TextStyle(text: String) -> Font {
     } else if text.prefix(5) == "#### " {
         return .title3
     } else if text.prefix(6) == "##### " {
-
+        
     } else if text.prefix(7) == "###### " {
         
     } else if text.prefix(2) == "- " || text.prefix(2) == "* " || text.prefix(2) == "+ " {
@@ -31,7 +31,8 @@ func TextStyle(text: String) -> Font {
         // 引用
         return .reference
     } else if text == "```" {
-        // コードブロックの始まりか終わり
+        // コードブロック
+        return .code
         
     } else if text.prefix(8) == "https://" || text.prefix(7) == "http://" {
         // URL 特に何も指定しない
@@ -68,6 +69,9 @@ extension Font {
     }
     static var num: Font {
         Font.custom("num", size: 24)
+    }
+    static var code: Font {
+        Font.custom("code", size: 24)
     }
 }
 
@@ -121,10 +125,10 @@ extension String {
             }
             ")"
         }
-
+        
         if let match = self.wholeMatch(of: regex) {
             //            print("正しい")
-//            print(match.1) // text
+            //            print(match.1) // text
             return URL(string: String(match.2))!
         }
         else {
@@ -141,10 +145,10 @@ extension String {
             ". "
         }
         if let match = self.firstMatch(of: regex) {
-
+            
             return String(match.1)+"."
         }
-return self
+        return self
     }
 }
 

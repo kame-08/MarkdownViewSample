@@ -68,6 +68,12 @@ public struct Markdown: View {
                             Text(atext.getAttributedString())
                         }
                         
+                    }else if TextStyle(text: atext) == .code{
+                        HStack {
+                            Text(atext.getAttributedString())
+                                .font(.system(.body, design: .monospaced))
+                        }
+                        
                     } else {
                         Text(atext.getAttributedString())
                             .font(TextStyle(text: atext))
@@ -81,18 +87,42 @@ public struct Markdown: View {
         }
         
         .task {
-            arrText = text.components(separatedBy: "\n")
+            arrText = MarkdownArray(text: text)
         }
         .onChange(of: text) { newValue in
-            arrText = newValue.components(separatedBy: "\n")
+            arrText = MarkdownArray(text: newValue)
         }
     }
-
 }
 
 @available(iOS 16.0, *)
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        Markdown(.constant("# Apple"))
+        Markdown(.constant("""
+# 見出し1
+## 見出し2
+### 見出し3
+#### 見出し4
+##### 見出し5
+###### 見出し6
+- リスト
+* リスト
+1. 番号付きリスト
+2. 番号付きリスト
+[記事](https://zenn.dev/ryo_dev)
+![アイコン](https://storage.googleapis.com/zenn-user-upload/avatar/8cb73f5e8f.jpeg)
+```
+コードブロック
+```
+> 引用
+脚注[^1]
+インライン^[その2]
+[^1]: 脚注の内容その1
+[^2]: a
+*イタリック*
+**太字**
+~~打ち消し線~~
+インライン`code`
+"""))
     }
 }
